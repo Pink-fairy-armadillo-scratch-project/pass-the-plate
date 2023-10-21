@@ -6,11 +6,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
-  entry: path.join(__dirname, 'src', 'index.jsx'),
+  entry: {
+    home: path.join(__dirname, 'src', 'home.jsx'),
+    login: path.join(__dirname, 'src', 'loginRoot.jsx'),
+  },
   mode: process.env.NODE_ENV,
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     clean: true,
   },
   module: {
@@ -32,12 +35,22 @@ module.exports = {
       },
     ],
   },
-  plugins: [new HtmlWebpackPlugin()],
+  plugins: [
+    new HtmlWebpackPlugin({
+      inject: true,
+      filename: 'home.html',
+      chunks: ['home'],
+    }),
+    new HtmlWebpackPlugin({
+      inject: true,
+      filename: 'index.html',
+      chunks: ['login'],
+    })],
   devServer: {
     port: 8080,
     proxy: {
-      '/api/**': 'http://localhost:1234'
-    }
+      '/': 'http://localhost:1234',
+    },
   },
   resolve: {
     extensions: ['.js', '.jsx', '.scss'],
