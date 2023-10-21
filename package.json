@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "export NODE_ENV=production; webpack",
-    "dev": "export NODE_ENV=development; webpack serve --open"
+    "dev": "export NODE_ENV=development; webpack serve --open & node server/server.js"
   },
   "author": "Joe Paul, Andrew Lo, Jordan Woods, Jordan Buranskas",
   "license": "ISC",

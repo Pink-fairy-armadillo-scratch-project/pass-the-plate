@@ -1,9 +1,11 @@
 
 
+
 const userController = {
   verifyUser(req, res, next) {
     console.log("verified")
-    res.status(200).json(res)
+    res.locals.activitySave = "posted successfully!"
+    return next()
   }
 }
 
