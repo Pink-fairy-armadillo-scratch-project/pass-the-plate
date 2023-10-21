@@ -24,6 +24,11 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
     ],
   },
   plugins: [new HtmlWebpackPlugin()],
@@ -31,6 +36,6 @@ module.exports = {
     port: 8080,
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.scss'],
   },
 };

@@ -5,6 +5,10 @@ import React from 'react';
 import { createRoot } from 'react-dom';
 import App from './client/app';
 
+// import styles
+import './client/styles/homeStyles.scss';
+
+
 const cheese = document.createElement('main');
 document.querySelector('body').append(cheese);
 
