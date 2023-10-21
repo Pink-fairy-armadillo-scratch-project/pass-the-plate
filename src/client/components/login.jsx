@@ -5,25 +5,25 @@ import React from 'react';
 
 function Login() {
   return (
-    <form>
+    <form method="post">
       <label>
-        Username
+        Username:
         <input type="text" name="username" />
       </label>
       <br />
       <label>
-        Password
+        Password:
         <input type="text" name="password" />
       </label>
       <br />
       <label>
-        Zip Code
+        Zip Code:
         <input type="text" name="zipcode" />
       </label>
       <br />
       <div className="button-div">
-        <button type="submit">Login</button>
-        <button type="submit">Sign Up</button>
+        <button type="submit" formAction="/login">Login</button>
+        <button type="submit" formAction="/login">Sign Up</button>
       </div>
     </form>
   );
