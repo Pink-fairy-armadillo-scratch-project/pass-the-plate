@@ -7,7 +7,7 @@ import LoginProvider from './client/loginProvider';
 
 
 // import styles
-import './client/styles/homeStyles.scss';
+import './client/styles/loginStyles.scss';
 
 
 const cheese = document.createElement('main');

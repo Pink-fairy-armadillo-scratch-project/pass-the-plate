@@ -1,0 +1,41 @@
+@import 'variables';
+
+* {
+  // box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+form {
+  position: relative;
+  bottom: 10vh;
+  border: solid 3px $base-color;
+  border-radius: 10px;
+  padding: 35px;
+  box-shadow: 1px 1px 1px 1px gray;
+}
+
+input {
+  margin: 10px;
+}
+
+.button-div {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+button {
+  width: 25%;
+  height: 30px;
+  background-color: $base-color;
+  border: none;
+  border-radius: 3px;
+}

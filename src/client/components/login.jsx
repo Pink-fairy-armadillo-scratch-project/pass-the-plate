@@ -21,8 +21,10 @@ function Login() {
         <input type="text" name="zipcode" />
       </label>
       <br />
-      <button type="submit">Login</button>
-      <button type="submit">Sign Up</button>
+      <div className="button-div">
+        <button type="submit">Login</button>
+        <button type="submit">Sign Up</button>
+      </div>
     </form>
   );
 }
