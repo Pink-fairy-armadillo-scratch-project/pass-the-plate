@@ -3,6 +3,7 @@
 import React from 'react';
 // import Login from './components/login';
 import Sidebar from './components/sidebar';
+import CentralDisplay from './components/centralDisplay';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <h1>Pass the Plate</h1>
       {/* <Login /> */}
       <Sidebar />
+      <CentralDisplay />
     </>
   );
 }
