@@ -35,6 +35,9 @@ module.exports = {
   plugins: [new HtmlWebpackPlugin()],
   devServer: {
     port: 8080,
+    proxy: {
+      '/api/**': 'http://localhost:1234'
+    }
   },
   resolve: {
     extensions: ['.js', '.jsx', '.scss'],
