@@ -25,13 +25,25 @@ function App() {
     },
   ];
   const [listings, setListings] = useState(listingArr);
+  const [display, setDisplay] = useState('allListings');
+  // display states: allListings, fullListing, postListing, ownListings
+
+  function displayFullListing(milk) {
+    setDisplay('fullListing');
+  }
 
   return (
     <>
       <h1>Pass the Plate</h1>
-      {/* <Login /> */}
-      <Sidebar />
-      <CentralDisplay listings={listings} />
+      <div className="container">
+        {/* <Login /> */}
+        <Sidebar />
+        <CentralDisplay
+          listings={listings}
+          display={display}
+          displayFullListing={displayFullListing}
+        />
+      </div>
     </>
   );
 }
