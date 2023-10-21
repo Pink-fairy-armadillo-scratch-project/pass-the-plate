@@ -1,15 +1,13 @@
 // the heart of the homepage
 
 import React from 'react';
+// import Login from './components/login';
 
 function App() {
   return (
     <>
-      <p>
-        Hello
-        <span> World.</span>
-      </p>
-      <p>Hello Again.</p>
+      <h1>Pass the Plate</h1>
+      {/* <Login /> */}
     </>
   );
 }
