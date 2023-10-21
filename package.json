@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "dev": "webpack serve --open"
+    "build": "export NODE_ENV=production; webpack",
+    "dev": "export NODE_ENV=development; webpack serve --open"
   },
   "author": "Joe Paul, Andrew Lo, Jordan Woods, Jordan Buranskas",
   "license": "ISC",

@@ -7,10 +7,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: path.join(__dirname, 'src', 'index.jsx'),
-  mode: 'development',
+  mode: process.env.NODE_ENV,
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
+    clean: true,
   },
   module: {
     rules: [
