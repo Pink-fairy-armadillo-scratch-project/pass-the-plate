@@ -1,4 +1,5 @@
 // the component that is in the center display after the post listing button is clicked
+// it enables restaurants to list food items they don't want or won't be able to use
 
 import React from 'react';
 

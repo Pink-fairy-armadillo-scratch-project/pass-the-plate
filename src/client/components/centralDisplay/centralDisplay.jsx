@@ -4,7 +4,6 @@ import React from 'react';
 import ListingPreview from './listingPreview';
 import FullListing from './fullListing';
 import PostListing from './postListing';
-import OwnListings from './ownListings';
 
 function CentralDisplay({
   display, listings, displayFullListing, myListings,

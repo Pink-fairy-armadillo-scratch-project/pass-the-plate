@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 // import Login from './components/login';
 import Sidebar from './components/sidebar';
-import CentralDisplay from './components/centralDisplay';
+import CentralDisplay from './components/centralDisplay/centralDisplay';
 
 function App() {
   const listingArr = [
