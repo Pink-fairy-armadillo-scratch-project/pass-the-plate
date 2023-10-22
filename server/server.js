@@ -33,20 +33,24 @@ app.get('/redirect', userController.findListings, (req, res) => {
 app.get('/listings', (req, res) => {
   const listingArr = [
     {
-      title: 'Listing 1',
+      title: 'Cheese',
       body: 'this is my listing',
+      user: 'Andrew',
     },
     {
-      title: 'Listing 2',
+      title: 'Milk',
       body: 'this is my listing',
+      user: 'Jordan',
     },
     {
-      title: 'Listing 3',
+      title: 'Yogurt',
       body: 'this is my listing',
+      user: 'Jordan',
     },
     {
-      title: 'Listing 4',
+      title: 'Ice Cream',
       body: 'this is my listing',
+      user: 'Joe',
     },
   ];
 

@@ -39,6 +39,11 @@ function App() {
       .then((data) => data.json())
       .then((data) => {
         setListings(data);
+        const newMyListings = [];
+        data.forEach((el) => {
+          if (el.user === 'Jordan') newMyListings.push(el);
+        });
+        setMyListings(newMyListings);
       })
       .catch((err) => console.log(err));
   }, []);
