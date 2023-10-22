@@ -32,6 +32,9 @@ function App() {
   // display states: allListings, fullListing, postListing, ownListings
   // this piece of state and the associated display functions control
   // what is being shown in the central area of the home page
+  function displayAllListings() {
+    setDisplay('allListings');
+  }
 
   function displayFullListing() {
     setDisplay('fullListing');
@@ -52,6 +55,7 @@ function App() {
         <Sidebar
           displayOwnListings={displayOwnListings}
           displayPostListing={displayPostListing}
+          displayAllListings={displayAllListings}
         />
         <CentralDisplay
           listings={listings}

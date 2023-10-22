@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 
-function Sidebar({ displayPostListing, displayOwnListings }) {
+function Sidebar({ displayPostListing, displayOwnListings, displayAllListings }) {
   return (
     <div className="sidebar">
       <h4>Sidebar</h4>
@@ -12,6 +12,7 @@ function Sidebar({ displayPostListing, displayOwnListings }) {
         </label>
         <button type="submit">Submit</button>
       </form>
+      <button type="button" onClick={() => { displayAllListings(); }}>Local Listings</button>
       <button type="button" onClick={() => { displayPostListing(); }}>Post Listing</button>
       <button type="button" onClick={() => { displayOwnListings(); }}>My Listings</button>
       <button type="button">Messages</button>
