@@ -28,6 +28,46 @@ app.get('/redirect', userController.findListings, (req, res) => {
 //     res.status(200)
 // })
 
+
+// Joe wrote these two routes on Saturday night to test some front end logic
+app.get('/listings', (req, res) => {
+  const listingArr = [
+    {
+      title: 'Listing 1',
+      body: 'this is my listing',
+    },
+    {
+      title: 'Listing 2',
+      body: 'this is my listing',
+    },
+    {
+      title: 'Listing 3',
+      body: 'this is my listing',
+    },
+    {
+      title: 'Listing 4',
+      body: 'this is my listing',
+    },
+  ];
+
+  res.status(200).json(listingArr);
+});
+
+app.get('/comments', (req, res) => {
+  const dummyComments = [
+    {
+      comment: 'Hello',
+      user: 'Perkins',
+    },
+    {
+      comment: 'Thank you',
+      user: 'Grove City Food Pantry',
+    },
+  ];
+
+  res.status(200).json(dummyComments);
+});
+
 app.listen(1234, () => {
   console.log('Listening on port 1234');
 });

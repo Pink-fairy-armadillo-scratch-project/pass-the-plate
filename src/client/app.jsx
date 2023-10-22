@@ -1,32 +1,48 @@
 /* eslint-disable react/jsx-no-bind */
 // the heart of the homepage
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import Login from './components/login';
 import Sidebar from './components/sidebar';
 import CentralDisplay from './components/centralDisplay/centralDisplay';
 
 function App() {
-  const listingArr = [
-    {
-      title: 'Listing 1',
-      body: 'this is my listing',
-    },
-    {
-      title: 'Listing 2',
-      body: 'this is my listing',
-    },
-    {
-      title: 'Listing 3',
-      body: 'this is my listing',
-    },
-    {
-      title: 'Listing 4',
-      body: 'this is my listing',
-    },
-  ];
-  const [listings, setListings] = useState(listingArr);
-  const [myListings, setMyListings] = useState(listingArr.slice(2));
+  // this is the main component
+  // most of state is stored in it
+  // most of the functions that are used in the front end are in it
+
+  const [listings, setListings] = useState([]);
+  const [myListings, setMyListings] = useState([]);
+
+  // const listingArr = [
+  //   {
+  //     title: 'Listing 1',
+  //     body: 'this is my listing',
+  //   },
+  //   {
+  //     title: 'Listing 2',
+  //     body: 'this is my listing',
+  //   },
+  //   {
+  //     title: 'Listing 3',
+  //     body: 'this is my listing',
+  //   },
+  //   {
+  //     title: 'Listing 4',
+  //     body: 'this is my listing',
+  //   },
+  // ];
+
+  // get the listings for your zip code
+  useEffect(() => {
+    fetch('/listings')
+      .then((data) => data.json())
+      .then((data) => {
+        setListings(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
 
   const [display, setDisplay] = useState('allListings');
   // display states: allListings, fullListing, postListing, ownListings

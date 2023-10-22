@@ -4,18 +4,16 @@
 import React, { useState, useEffect } from 'react';
 
 function FullListing() {
-  const dummyComments = [
-    {
-      comment: 'Hello',
-      user: 'Perkins',
-    },
-    {
-      comment: 'Thank you',
-      user: 'Grove City Food Pantry',
-    },
-  ];
+  const [comments, setComments] = useState([]);
 
-  const [comments, setComments] = useState(dummyComments);
+  useEffect(() => {
+    fetch('/comments')
+      .then((data) => data.json())
+      .then((data) => {
+        setComments(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const commentElements = [];
 
