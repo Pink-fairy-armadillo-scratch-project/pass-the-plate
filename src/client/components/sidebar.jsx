@@ -7,7 +7,7 @@ function Sidebar({ displayPostListing, displayOwnListings, displayAllListings })
       <h4>Sidebar</h4>
       <form>
         <label>
-          Zipcode
+          Zipcode:
           <input type="text" />
         </label>
         <button type="submit">Submit</button>

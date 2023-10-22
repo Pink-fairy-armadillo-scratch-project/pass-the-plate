@@ -2,7 +2,7 @@ import React from 'react';
 
 function ListingPreview({ elem, displayFullListing }) {
   return (
-    <div>
+    <div className="listing-preview">
       <h3>{elem.title}</h3>
       <br />
       <p>{elem.body}</p>

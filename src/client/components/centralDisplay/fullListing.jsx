@@ -5,7 +5,9 @@ import React, { useState, useEffect } from 'react';
 
 function FullListing({ whichListing }) {
   const [comments, setComments] = useState([]);
+  // this piece of state is used to store the comments
 
+  // get the comments from the server
   useEffect(() => {
     fetch('/comments')
       .then((data) => data.json())
@@ -15,8 +17,8 @@ function FullListing({ whichListing }) {
       .catch((err) => console.log(err));
   }, []);
 
+  // use the state that was updated by the fetch to create html elements with comments inside
   const commentElements = [];
-
   comments.forEach((el, index) => {
     commentElements.push(
       <div className="comment-div">

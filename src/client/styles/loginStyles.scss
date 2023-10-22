@@ -13,9 +13,11 @@ body {
   height: 100vh;
 }
 
+h1 {
+  text-align: center;
+}
+
 form {
-  position: relative;
-  bottom: 10vh;
   border: solid 3px $base-color;
   border-radius: 10px;
   padding: 35px;

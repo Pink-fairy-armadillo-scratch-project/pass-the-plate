@@ -9,16 +9,16 @@ function CentralDisplay({
   display, listings, displayFullListing, myListings, whichListing,
 }) {
   // what is displayed in this component is different depending on state
-  if (display === 'allListings' || display === 'ownListings') {
-    // this function creates an array of componenets
 
+  if (display === 'allListings' || display === 'ownListings') {
     const createDisplayArray = (data) => {
+      // input: an array that is taken from state
+      // output: an array of components
+
       const result = [];
 
       data.forEach((elem, i) => {
         result.push(<ListingPreview
-          // title={elem.title}
-          // body={elem.body}
           elem={elem}
           key={`listingPreview ${i}`}
           displayFullListing={displayFullListing}
@@ -28,11 +28,12 @@ function CentralDisplay({
       return result;
     };
 
+    // depending on display state, pass a different piece of state into the function
     const listingPreviewArray = (display === 'allListings') ? createDisplayArray(listings) : createDisplayArray(myListings);
 
     return (
       <div className="central-display-holder">
-        <h2>This is the central display.</h2>
+        <h2>Food Pickup Listings</h2>
         <div className="central-display">
           {listingPreviewArray}
         </div>
