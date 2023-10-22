@@ -1,13 +1,13 @@
 const db = require('../models/foodbankModel')
 
 const fakeListing = {
-  
-}
 
+};
 
 
 const userController = {};
 
+<<<<<<< HEAD
   let userReqBod;
   let newUserReqBod;
   
@@ -36,8 +36,22 @@ const userController = {};
   userController.findListings = (req, res, next) => {
     // console.log("request body in RedirectController: ", userReqBod)
     console.log("new user request body in RedirectController: ", newUserReqBod)
+=======
+let userReqBod;
 
-    let username = userReqBod[username]
+userController.verifyUser = (req, res, next) => {
+  console.log('we shouldnt be hitting this');
+  // console.log("request body in Originalcontroller: ", req.body)
+  userReqBod = req.body;
+  res.redirect('/redirect');
+  return next();
+};
+
+userController.findListings = (req, res, next) => {
+  console.log('request body in RedirectController: ', userReqBod);
+>>>>>>> f6999b179385a8c0c9c998a771e68f2b7c82a46f
+
+  let username = userReqBod[username]
 
     // const selector = 'SELECT * FROM listings WHERE wing = $1 ORDER BY roomnumber'; 
     // //need a join from listings with zip code 
@@ -48,11 +62,10 @@ const userController = {};
     // })
 
 
-
-    //Query SQL DB for SELECT * WHERE userReqBody === zipcode_id
-    res.locals.listings = "database response"
-    return next()
-  };
+  // Query SQL DB for SELECT * WHERE userReqBody === zipcode_id
+  res.locals.listings = 'database response';
+  return next();
+};
 
 
 module.exports = userController;

@@ -7,7 +7,6 @@
 }
 
 body {
-  height: 100vh;
   border: solid 1px blue;
 }
 
@@ -16,23 +15,23 @@ h1 {
 }
 
 p {
-  color: green;
+  color: $text-color;
   span {
     color: red;
   }
 }
 
+input {
+  color: $text-color;
+}
+
+label {
+  color: $text-color;
+}
+
 main {
   height: 100%;
   border: solid 1px green;
-}
-
-.sidebar {
-  width: 15em;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  border: solid 1px black;
 }
 
 .central-display {
@@ -59,4 +58,53 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.listing-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border: solid 1px blue;
+  height: 175px;
+}
+
+.sidebar {
+  width: 15em;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px black;
+  align-items: center;
+  position: relative;
+  top: 28px;
+}
+
+.sidebar form {
+  margin-bottom: 25px;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar form button {
+  margin-top: 10px;
+}
+
+.sidebar label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.sidebar input {
+  width: 33%;
+}
+
+.sidebar button {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 80%;
+
 }

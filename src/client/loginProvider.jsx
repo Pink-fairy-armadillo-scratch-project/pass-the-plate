@@ -3,7 +3,10 @@ import Login from './components/login';
 
 function loginProvider() {
   return (
-    <Login />
+    <>
+      <h1>Pass the Plate</h1>
+      <Login />
+    </>
   );
 }
 
