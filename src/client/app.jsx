@@ -26,13 +26,14 @@ function App() {
     },
   ];
   const [listings, setListings] = useState(listingArr);
+  const [myListings, setMyListings] = useState(listingArr.slice(2));
 
   const [display, setDisplay] = useState('allListings');
   // display states: allListings, fullListing, postListing, ownListings
   // this piece of state and the associated display functions control
   // what is being shown in the central area of the home page
 
-  function displayFullListing(milk) {
+  function displayFullListing() {
     setDisplay('fullListing');
   }
 
@@ -48,7 +49,6 @@ function App() {
     <>
       <h1>Pass the Plate</h1>
       <div className="container">
-        {/* <Login /> */}
         <Sidebar
           displayOwnListings={displayOwnListings}
           displayPostListing={displayPostListing}
@@ -57,6 +57,7 @@ function App() {
           listings={listings}
           display={display}
           displayFullListing={displayFullListing}
+          myListings={myListings}
         />
       </div>
     </>
