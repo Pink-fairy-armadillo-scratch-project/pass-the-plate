@@ -1,17 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const app = express();
 const userController = require('./controllers/userController');
+const listingsController = require('./controllers/listingsController')
 
 app.use(bodyParser.urlencoded());
 app.use(express.json());
 
 app.post('/login', userController.verifyUser, (req, res) => {
-  console.log('request body in server: ', req.body);
+  // console.log('request body in server: ', req.body);
 
-<<<<<<< HEAD
-    console.log("request body in server: ", req.body)
+  //   console.log("request body in server: ", req.body)
 
     // res.status(200).json(res.locals.activitySave)
 })
@@ -19,15 +18,11 @@ app.post('/login', userController.verifyUser, (req, res) => {
 app.post('/signup', userController.createUser, (req, res) => {
   console.log("new user request body in server: ", req.body)
 })
-=======
-  // res.status(200).json(res.locals.activitySave)
-});
->>>>>>> f6999b179385a8c0c9c998a771e68f2b7c82a46f
 
 
-app.get('/redirect', userController.findListings, (req, res) => {
-  console.log('made it to redirect');
-  console.log('this is the find listing controller function:', req.body);
+app.get('/listings', listingsController.findListings, (req, res) => {
+  // console.log('made it to redirect');
+  // console.log('this is the find listing controller function:', req.body);
 
   res.status(200).json(res.locals.listings);
 });

@@ -7,7 +7,6 @@ const fakeListing = {
 
 const userController = {};
 
-<<<<<<< HEAD
   let userReqBod;
   let newUserReqBod;
   
@@ -16,10 +15,26 @@ const userController = {};
     // console.log("request body in Originalcontroller: ", req.body)
     userReqBod = req.body;
     // find user in database
-    // if user cannot be found, redirect to default path '/'
-    // if user is found, redirect to home page (currently set to '/redirect')
-    res.redirect('/redirect')
-    return next();
+    // console.log('testing userReqBod: ', userReqBod)
+    const selector = `SELECT username, password, zip FROM "user" WHERE username = '${userReqBod.username}' AND password = '${userReqBod.password}' AND zip = ${userReqBod.zipcode}`
+    db.query(selector)
+    .then((data) => {
+      // console.log('request body in verifyUser controller: ', userReqBod)
+      // console.log('should log user inputted in login form', data.rows)
+      if (data.rows.length !== 0) {
+        // if user is found, redirect to home page (currently set to '/listings')
+        console.log('user found!', data.rows)
+        res.locals.user = data.rows;
+        res.redirect('/listings')
+      } else {
+        // if user cannot be found, redirect to default path '/'
+        console.log('user not found...', data.rows)
+        res.redirect('/');
+      }
+    })
+    .catch((err) => {
+      console.error('Error in verifyUser middleware: ', err)
+    }) 
   };
 
   userController.createUser = (req, res, next) => {
@@ -31,41 +46,5 @@ const userController = {};
     res.redirect('/redirect')
     return next();
   }
-
-
-  userController.findListings = (req, res, next) => {
-    // console.log("request body in RedirectController: ", userReqBod)
-    console.log("new user request body in RedirectController: ", newUserReqBod)
-=======
-let userReqBod;
-
-userController.verifyUser = (req, res, next) => {
-  console.log('we shouldnt be hitting this');
-  // console.log("request body in Originalcontroller: ", req.body)
-  userReqBod = req.body;
-  res.redirect('/redirect');
-  return next();
-};
-
-userController.findListings = (req, res, next) => {
-  console.log('request body in RedirectController: ', userReqBod);
->>>>>>> f6999b179385a8c0c9c998a771e68f2b7c82a46f
-
-  let username = userReqBod[username]
-
-    // const selector = 'SELECT * FROM listings WHERE wing = $1 ORDER BY roomnumber'; 
-    // //need a join from listings with zip code 
-    // db.query(selector, queryParams)
-    // .then((data) => {
-    //   res.locals.listings = data.rows;
-    //   return next();
-    // })
-
-
-  // Query SQL DB for SELECT * WHERE userReqBody === zipcode_id
-  res.locals.listings = 'database response';
-  return next();
-};
-
 
 module.exports = userController;
