@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 
-function FullListing() {
+function FullListing({ whichListing }) {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ function FullListing() {
 
   return (
     <div className="full-listing-div" action="/comment" method="post">
-      <h3 className="full-listing-header">Listing Name</h3>
+      <h3 className="full-listing-header">{whichListing.title}</h3>
       <form className="comment-form">
         <input type="text-area" />
         <button type="submit">Post</button>

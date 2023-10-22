@@ -12,26 +12,15 @@ function App() {
   // most of the functions that are used in the front end are in it
 
   const [listings, setListings] = useState([]);
-  const [myListings, setMyListings] = useState([]);
+  // this piece of state stores all the listings for a given zip code
 
-  // const listingArr = [
-  //   {
-  //     title: 'Listing 1',
-  //     body: 'this is my listing',
-  //   },
-  //   {
-  //     title: 'Listing 2',
-  //     body: 'this is my listing',
-  //   },
-  //   {
-  //     title: 'Listing 3',
-  //     body: 'this is my listing',
-  //   },
-  //   {
-  //     title: 'Listing 4',
-  //     body: 'this is my listing',
-  //   },
-  // ];
+  const [myListings, setMyListings] = useState([]);
+  // this piece of state stores the listings from a given zip code that are
+  // also associated with the current user
+
+  const [whichListing, setWhichListing] = useState({});
+  // this piece of state is used to tell the fullListing component what data it
+  // should (1) display and (2) ask for from the server
 
   // get the listings for your zip code
   useEffect(() => {
@@ -57,8 +46,9 @@ function App() {
     setDisplay('allListings');
   }
 
-  function displayFullListing() {
+  function displayFullListing(target) {
     setDisplay('fullListing');
+    setWhichListing(target);
   }
 
   function displayPostListing() {
@@ -83,6 +73,7 @@ function App() {
           display={display}
           displayFullListing={displayFullListing}
           myListings={myListings}
+          whichListing={whichListing}
         />
       </div>
     </>

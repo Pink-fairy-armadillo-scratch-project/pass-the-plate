@@ -1,13 +1,13 @@
 import React from 'react';
 
-function ListingPreview({ title, body, displayFullListing }) {
+function ListingPreview({ elem, displayFullListing }) {
   return (
     <div>
-      <h3>{title}</h3>
+      <h3>{elem.title}</h3>
       <br />
-      <p>{body}</p>
+      <p>{elem.body}</p>
       <br />
-      <button type="button" onClick={() => displayFullListing()}>View full listing</button>
+      <button type="button" onClick={() => displayFullListing(elem)}>View full listing</button>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import FullListing from './fullListing';
 import PostListing from './postListing';
 
 function CentralDisplay({
-  display, listings, displayFullListing, myListings,
+  display, listings, displayFullListing, myListings, whichListing,
 }) {
   // what is displayed in this component is different depending on state
   if (display === 'allListings' || display === 'ownListings') {
@@ -17,8 +17,9 @@ function CentralDisplay({
 
       data.forEach((elem, i) => {
         result.push(<ListingPreview
-          title={elem.title}
-          body={elem.body}
+          // title={elem.title}
+          // body={elem.body}
+          elem={elem}
           key={`listingPreview ${i}`}
           displayFullListing={displayFullListing}
         />);
@@ -41,7 +42,7 @@ function CentralDisplay({
 
   if (display === 'fullListing') {
     return (
-      <FullListing />
+      <FullListing whichListing={whichListing} />
     );
   }
 
