@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 // the heart of the homepage
 
 import React, { useState } from 'react';
@@ -25,11 +26,22 @@ function App() {
     },
   ];
   const [listings, setListings] = useState(listingArr);
+
   const [display, setDisplay] = useState('allListings');
   // display states: allListings, fullListing, postListing, ownListings
+  // this piece of state and the associated display functions control
+  // what is being shown in the central area of the home page
 
   function displayFullListing(milk) {
     setDisplay('fullListing');
+  }
+
+  function displayPostListing() {
+    setDisplay('postListing');
+  }
+
+  function displayOwnListings() {
+    setDisplay('ownListings');
   }
 
   return (
@@ -37,7 +49,10 @@ function App() {
       <h1>Pass the Plate</h1>
       <div className="container">
         {/* <Login /> */}
-        <Sidebar />
+        <Sidebar
+          displayOwnListings={displayOwnListings}
+          displayPostListing={displayPostListing}
+        />
         <CentralDisplay
           listings={listings}
           display={display}

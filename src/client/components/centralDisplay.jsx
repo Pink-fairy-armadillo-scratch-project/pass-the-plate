@@ -2,6 +2,9 @@
 
 import React from 'react';
 import ListingPreview from './listingPreview';
+import FullListing from './fullListing';
+import PostListing from './postListing';
+import OwnListings from './ownListings';
 
 function CentralDisplay({ display, listings, displayFullListing }) {
   if (display === 'allListings') {
@@ -28,10 +31,21 @@ function CentralDisplay({ display, listings, displayFullListing }) {
 
   if (display === 'fullListing') {
     return (
-      <p>hello world</p>
+      <FullListing />
     );
   }
-  // else if return ()
+
+  if (display === 'postListing') {
+    return (
+      <PostListing />
+    );
+  }
+
+  if (display === 'ownListings') {
+    return (
+      <OwnListings />
+    );
+  }
 }
 
 
