@@ -13,7 +13,9 @@ app.post('/login', userController.verifyUser, (req, res) => {
     // res.status(200).json(res.locals.activitySave)
 })
 
-
+app.post('/signup', userController.createUser, (req, res) => {
+  console.log("new user request body in server: ", req.body)
+})
 
 
 app.get('/redirect', userController.findListings, (req, res) => {
