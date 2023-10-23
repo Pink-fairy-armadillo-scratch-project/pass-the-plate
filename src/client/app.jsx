@@ -25,22 +25,6 @@ function App() {
   // this piece of state is used to tell the fullListing component what data it
   // should (1) display and (2) ask for from the server
 
-  // get the listings for your zip code (if necessary)
-  useEffect(() => {
-    fetch('/listings')
-      .then((data) => data.json())
-      .then((data) => {
-        setListings(data);
-        const newMyListings = [];
-        data.forEach((el) => {
-          if (el.user === 'Jordan') newMyListings.push(el);
-        });
-        setMyListings(newMyListings);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-
   const [display, setDisplay] = useState('allListings');
   // display states: allListings, fullListing, postListing, ownListings
   // this piece of state and the associated display functions control
@@ -62,6 +46,21 @@ function App() {
   function displayOwnListings() {
     setDisplay('ownListings');
   }
+
+  // get the listings for your zip code (if necessary)
+  useEffect(() => {
+    fetch('/listings')
+      .then((data) => data.json())
+      .then((data) => {
+        setListings(data);
+        const newMyListings = [];
+        data.forEach((el) => {
+          if (el.user === 'Jordan') newMyListings.push(el);
+        });
+        setMyListings(newMyListings);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <>

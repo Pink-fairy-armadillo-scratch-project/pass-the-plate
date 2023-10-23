@@ -1,13 +1,16 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const userController = require('./controllers/userController');
 const listingsController = require('./controllers/listingsController');
 
+// parse bodies, cookies, and urlencoded information
 app.use(bodyParser.urlencoded());
 app.use(express.json());
+app.use(cookieParser());
 
 
 app.post('/signup', userController.createUser, (req, res) => {
@@ -30,11 +33,14 @@ app.get('/home', (req, res) => {
   
 })
 
-app.get('/listings', userController.findListings, (req, res) => {
+app.get('/listings', /* userController.findListings */ (req, res) => {
   console.log('made it to redirect');
+  console.log('are there cookies?', req.cookies);
+  const cookies = req.cookies;
   // console.log('this is the find listing controller function:', req.body);
   // console.log('listings data made it to the server: ', res.locals.listings)
   // res.status(200).json(res.locals.listings);
+  res.status(200).json('got here');
 });
 
 app.post('/postlisting', listingsController.postListing, (req, res) => {
