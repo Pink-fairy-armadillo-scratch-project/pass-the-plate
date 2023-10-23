@@ -4,10 +4,11 @@ const bodyParser = require('body-parser');
 const app = express();
 const userController = require('./controllers/userController');
 const listingsController = require('./controllers/listingsController')
+const cookieParser = require('cookie-parser')
 
 app.use(bodyParser.urlencoded());
 app.use(express.json());
-
+app.use(cookieParser())
 
 app.post('/signup', userController.createUser, (req, res) => {
   console.log("new user request body in server: ", req.body)
@@ -24,16 +25,13 @@ app.post('/login', userController.verifyUser, (req, res) => {
     res.status(200).sendFile(path.resolve(__dirname, '../dist/home.html'))
 })
 
-app.get('/home', (req, res) => {
-  console.log("this is in our server right before we send response")
-  
-})
 
 app.get('/listings', userController.findListings, (req, res) => {
   console.log('made it to redirect');
+  console.log(res.locals.listings)
   // console.log('this is the find listing controller function:', req.body);
   // console.log('listings data made it to the server: ', res.locals.listings)
-  // res.status(200).json(res.locals.listings);
+  res.status(200).json(res.locals.listings);
 });
 
 app.post('/postlisting', listingsController.postListing, (req, res) => {

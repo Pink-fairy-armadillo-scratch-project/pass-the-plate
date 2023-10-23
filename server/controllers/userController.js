@@ -1,4 +1,5 @@
 const db = require('../models/foodbankModel')
+const cookieParser = require('cookie-parser')
 
 // const fakeListing = {
 
@@ -44,20 +45,15 @@ const userController = {};
  let recentData;
 
   userController.findListings = (req, res, next) => {
-    // console.log("request body in RedirectController: ", userReqBod)
-                  console.log("made it to findListings controller")
-                  console.log(userReqBod)
-                  // console.log('request body in findListings controller', userReqBod)
-    // console.log('i made it to findListings!', res.locals.user)
-    // console.log('data persisted to redirected page', req.params.user)
-  // let username = userReqBod[username]
-                  const queryString = `SELECT * FROM listing WHERE zipcode = ${userReqBod.zipcode}`; // testing route handler for finding listing based on zipcode
-                  //need a join from listings with zip code 
+
+                  console.log("made it to findListings controller")              
+                  const queryString = `SELECT * FROM listing WHERE zipcode = ${req.cookies.zipcode}`; // testing route handler for finding listing based on zipcode
+                
                   db.query(queryString)
                   .then((data) => {
                     console.log('data from listings', data.rows)
-                    recentData = data.rows;
-                    res.redirect('/home')
+                    res.locals.listings = data.rows;
+                    return next()
                   })
                   .catch((err) => console.error('Error in findListings middleware: ', err))
   
@@ -65,14 +61,7 @@ const userController = {};
   // res.locals.listings = 'database response';
   };
 
-  userController.sendHome = (req, res, next) => {
-        console.log("made it to sendHome")
-        console.log(recentData)
 
-       
-        return next()
-  }
-  
 
   userController.createUser = (req, res, next) => {
     // create user in database
