@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
 const userController = require('./controllers/userController');
@@ -7,25 +8,32 @@ const listingsController = require('./controllers/listingsController')
 app.use(bodyParser.urlencoded());
 app.use(express.json());
 
+
+app.post('/signup', userController.createUser, (req, res) => {
+  console.log("new user request body in server: ", req.body)
+
+})
+
+
 app.post('/login', userController.verifyUser, (req, res) => {
   // console.log('request body in server: ', req.body);
     console.log("request body in server: ", req.body)
     // res.status(200).json(res.locals.activitySave)
+    res.cookie('username', res.locals.user.username);
+    res.cookie('zipcode', res.locals.user.zipcode)
+    res.status(200).sendFile(path.resolve(__dirname, '../dist/home.html'))
 })
 
-app.post('/signup', userController.createUser, (req, res) => {
-  console.log("new user request body in server: ", req.body)
-})
-
-app.get('/home', userController.sendHome, (req, res) => {
-  res.status(200).json(res.locals.listings)
+app.get('/home', (req, res) => {
+  console.log("this is in our server right before we send response")
+  
 })
 
 app.get('/listings', userController.findListings, (req, res) => {
   console.log('made it to redirect');
   // console.log('this is the find listing controller function:', req.body);
   // console.log('listings data made it to the server: ', res.locals.listings)
-  res.status(200).json(res.locals.listings);
+  // res.status(200).json(res.locals.listings);
 });
 
 app.post('/postlisting', listingsController.postListing, (req, res) => {

@@ -26,8 +26,9 @@ const userController = {};
                         if (data.rows.length !== 0) {
                           // if user is found, redirect to home page (currently set to '/listings')
                           console.log('user found!', data.rows)
-                          // res.locals.user = data.rows;
-                          res.redirect('/listings')
+                          res.locals.user = data.rows[0];
+                          return next();
+                          // res.redirect('/home')
                         } else {
                           // if user cannot be found, redirect to default path '/'
                           // console.log('user not found...', data.rows)
@@ -68,7 +69,7 @@ const userController = {};
         console.log("made it to sendHome")
         console.log(recentData)
 
-        res.locals.listings = recentData;
+       
         return next()
   }
   
