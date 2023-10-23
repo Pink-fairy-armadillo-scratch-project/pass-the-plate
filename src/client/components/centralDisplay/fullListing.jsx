@@ -29,9 +29,9 @@ function FullListing({ whichListing }) {
   });
 
   return (
-    <div className="full-listing-div" action="/comment" method="post">
+    <div className="full-listing-div">
       <h3 className="full-listing-header">{whichListing.title}</h3>
-      <form className="comment-form">
+      <form className="comment-form" action="/comment" method="post">
         <input type="text-area" />
         <button type="submit">Post</button>
       </form>

@@ -1,8 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+
 const app = express();
 const userController = require('./controllers/userController');
-const listingsController = require('./controllers/listingsController')
+const listingsController = require('./controllers/listingsController');
 
 app.use(bodyParser.urlencoded());
 app.use(express.json());
@@ -10,12 +11,12 @@ app.use(express.json());
 app.post('/login', userController.verifyUser, (req, res) => {
   // console.log('request body in server: ', req.body);
   //   console.log("request body in server: ", req.body)
-    // res.status(200).json(res.locals.activitySave)
-})
+  // res.status(200).json(res.locals.activitySave)
+});
 
 app.post('/signup', userController.createUser, (req, res) => {
-  console.log("new user request body in server: ", req.body)
-})
+  console.log('new user request body in server: ', req.body);
+});
 
 
 // app.get('/listings', listingsController.findListings, (req, res) => {
@@ -26,13 +27,13 @@ app.post('/signup', userController.createUser, (req, res) => {
 // });
 
 app.post('/postlisting', listingsController.postListing, (req, res) => {
-  console.log('made it to server!', req.body)
+  console.log('made it to server!', req.body);
   res.status(200).json(res.locals.newListing);
-})
+});
 
-app.post('/postcomment', listingsController.postComment)
+app.post('/postcomment', listingsController.postComment);
 
-app.get('/comments')
+app.get('/comments');
 
 // app.get('/redirect', listingsController.findListings, (req, res) => {
 //     console.log('made it to redirect')

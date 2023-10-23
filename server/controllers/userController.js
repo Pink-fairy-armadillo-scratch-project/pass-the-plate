@@ -7,8 +7,8 @@ const db = require('../models/foodbankModel')
 
 const userController = {};
 
-  // let userReqBod;
-  // let newUserReqBod;
+// let userReqBod;
+// let newUserReqBod;
   
   userController.verifyUser = (req, res, next) => {
     // console.log("we shouldnt be hitting this")
@@ -34,8 +34,8 @@ const userController = {};
       }
     })
     .catch((err) => {
-      console.error('Error in verifyUser middleware: ', err)
-    }) 
+      console.error('Error in verifyUser middleware: ', err);
+    });
   };
 
 
