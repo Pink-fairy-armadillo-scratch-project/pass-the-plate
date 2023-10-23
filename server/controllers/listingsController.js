@@ -4,9 +4,9 @@ const listingsController = {};
 
 listingsController.findListings = (req, res, next) => {
   // console.log("request body in RedirectController: ", userReqBod)
-  // console.log('request body in findListings controller', userReqBod)
+  console.log('request body in findListings controller', userReqBod)
   // console.log('i made it to findListings!', res.locals.user)
-  console.log('data persisted to redirected page', req.params.user)
+  // console.log('data persisted to redirected page', req.params.user)
 // let username = userReqBod[username]
   const queryString = `SELECT * FROM listing WHERE zipcode = 11111`; // testing route handler for finding listing based on zipcode
   //need a join from listings with zip code 
@@ -42,7 +42,7 @@ listingsController.postListing = (req, res, next) => {
 listingsController.postComment = (req, res, next) => {
   let commentReqBod = req.body;
   console.log('posting a comment thru postman: ', commentReqBod)
-  
+
 }
 
 // listingsController.findListings = (req, res, next) => {
