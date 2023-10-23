@@ -4,31 +4,53 @@ const listingsController = {};
 
 listingsController.findListings = (req, res, next) => {
   // console.log("request body in RedirectController: ", userReqBod)
-  console.log("new user request body in RedirectController: ", newUserReqBod)
-
-let username = userReqBod[username]
-
-  const selector = 'SELECT * FROM listings WHERE wing = $1 ORDER BY roomnumber'; 
+  // console.log('request body in findListings controller', userReqBod)
+  // console.log('i made it to findListings!', res.locals.user)
+  console.log('data persisted to redirected page', req.params.user)
+// let username = userReqBod[username]
+  const queryString = `SELECT * FROM listing WHERE zipcode = 11111`; // testing route handler for finding listing based on zipcode
   //need a join from listings with zip code 
-  db.query(selector, queryParams)
+  db.query(queryString)
   .then((data) => {
+    console.log('data from listings', data.rows)
     res.locals.listings = data.rows;
     return next();
   })
+  .catch((err) => console.error('Error in findListings middleware: ', err))
 
 
 // Query SQL DB for SELECT * WHERE userReqBody === zipcode_id
-res.locals.listings = 'database response';
-return next();
+// res.locals.listings = 'database response';
+// return next();
 };
 
+
+listingsController.postListing = (req, res, next) => {
+  let listingReqBod = req.body;
+  console.log('posting a listing thru postman: ', listingReqBod)
+  const queryString = `INSERT INTO listing (title, listing_body, user_id) VALUES ('${listingReqBod.title}', '${listingReqBod.listingBody}', '9')`
+  db.query(queryString)
+  .then((data) => {
+    console.log('new listing: ', data.rows);
+    res.locals.newListing = data.rows;
+    return next();
+  })
+  .catch((err) => console.error('Error in postListing middleware: ', err))
+}
+
+
+listingsController.postComment = (req, res, next) => {
+  let commentReqBod = req.body;
+  console.log('posting a comment thru postman: ', commentReqBod)
+  
+}
+
 // listingsController.findListings = (req, res, next) => {
-//   // console.log("request body in RedirectController: ", userReqBod)
-//   console.log("new user request body in RedirectController: ", newUserReqBod)
+//   console.log("request body in RedirectController: ", userReqBod)
 
 // let username = userReqBod[username]
 
-//   const selector = 'SELECT * FROM listings WHERE wing = $1 ORDER BY roomnumber'; 
+//   const selector = 'SELECT * FROM listings WHERE wing = $1 ORDER BY room`number'; 
 //   //need a join from listings with zip code 
 //   db.query(selector, queryParams)
 //   .then((data) => {

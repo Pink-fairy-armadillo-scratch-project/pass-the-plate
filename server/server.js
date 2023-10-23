@@ -9,9 +9,7 @@ app.use(express.json());
 
 app.post('/login', userController.verifyUser, (req, res) => {
   // console.log('request body in server: ', req.body);
-
   //   console.log("request body in server: ", req.body)
-
     // res.status(200).json(res.locals.activitySave)
 })
 
@@ -20,14 +18,23 @@ app.post('/signup', userController.createUser, (req, res) => {
 })
 
 
-app.get('/listings', listingsController.findListings, (req, res) => {
-  // console.log('made it to redirect');
-  // console.log('this is the find listing controller function:', req.body);
+// app.get('/listings', listingsController.findListings, (req, res) => {
+//   // console.log('made it to redirect');
+//   // console.log('this is the find listing controller function:', req.body);
+//   console.log('listings data made it to the server: ', res.locals.listings)
+//   res.status(200).json(res.locals.listings);
+// });
 
-  res.status(200).json(res.locals.listings);
-});
+app.post('/postlisting', listingsController.postListing, (req, res) => {
+  console.log('made it to server!', req.body)
+  res.status(200).json(res.locals.newListing);
+})
 
-// app.get('/redirect', (req, res) => {
+app.post('/postcomment', listingsController.postComment)
+
+app.get('/comments')
+
+// app.get('/redirect', listingsController.findListings, (req, res) => {
 //     console.log('made it to redirect')
 //     console.log("request body", req.body)
 
