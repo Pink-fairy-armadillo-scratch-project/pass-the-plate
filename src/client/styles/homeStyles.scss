@@ -35,7 +35,7 @@ label {
 
 .central-display {
   width: 50vw;
-  height: 80%;
+  height: fit-content;
   border: solid 1px black;
   display: grid;
   grid-template-columns: auto auto;
@@ -105,5 +105,9 @@ button {
   margin-top: 5px;
   margin-bottom: 5px;
   width: 80%;
+}
 
+.post-listing-div form {
+  display: flex;
+  flex-direction: column;
 }
