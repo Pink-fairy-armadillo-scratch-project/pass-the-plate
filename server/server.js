@@ -37,65 +37,36 @@ app.get('/listings', userController.findListings, (req, res) => {
 
 app.post('/postlisting', userController.postListing, (req, res) => {
   console.log('successfully posted listing in database')
-  res.status(200);
+  res.send(200);
 })
 
 app.post('/postcomment', userController.postComment, (req, res) => {
 
+  res.send(200)
+
 })
 
-app.get('/comments', )  
-
-// app.get('/redirect', listingsController.findListings, (req, res) => {
-//     console.log('made it to redirect')
-//     console.log("request body", req.body)
-
-//     res.status(200)
-// })
+app.get('/comments', userController.getComments, (req, res) => {
 
 
-// Joe wrote these two routes on Saturday night to test some front end logic
-// app.get('/listings', (req, res) => {
-//   const listingArr = [
+  res.send(200).json(res.locals.comments)
+})  
+
+
+// app.get('/comments', (req, res) => {
+//   const dummyComments = [
 //     {
-//       title: 'Cheese',
-//       body: 'this is my listing',
-//       user: 'Andrew',
+//       comment: 'Hello',
+//       user: 'Perkins',
 //     },
 //     {
-//       title: 'Milk',
-//       body: 'this is my listing',
-//       user: 'Jordan',
-//     },
-//     {
-//       title: 'Yogurt',
-//       body: 'this is my listing',
-//       user: 'Jordan',
-//     },
-//     {
-//       title: 'Ice Cream',
-//       body: 'this is my listing',
-//       user: 'Joe',
+//       comment: 'Thank you',
+//       user: 'Grove City Food Pantry',
 //     },
 //   ];
 
-//   res.status(200).json(listingArr);
+//   res.status(200).json(dummyComments);
 // });
-
-app.get('/comments', (req, res) => {
-  const dummyComments = [
-    {
-      comment: 'Hello',
-      user: 'Perkins',
-    },
-    {
-      comment: 'Thank you',
-      user: 'Grove City Food Pantry',
-    },
-  ];
-
-  res.status(200).json(dummyComments);
-});
 
 app.listen(1234, () => {
   console.log('Listening on port 1234');

@@ -53,7 +53,7 @@ const userController = {};
                   db.query(queryString)
                   .then((data) => {
                     // console.log('data from listings', data.rows)
-                    res.locals.listings = data.rows;
+                    res.locals.listingID = data.rows;
                     return next()
                   })
                   .catch((err) => console.error('Error in findListings middleware: ', err))
@@ -67,7 +67,7 @@ const userController = {};
   userController.postListing = (req, res, next) => {
     listingReqBod = req.body;
     console.log('posting a listing thru postman: ', listingReqBod)
-    const queryString = `INSERT INTO listing (title, listing_body, zipcode, user_id) VALUES ('${listingReqBod.title}', '${listingReqBod.listingBody}', ${listingReqBod.zipcode}, ${req.cookies.userID})`
+    const queryString = `INSERT INTO listing (title, listing_body, zipcode, user_id) VALUES ('${listingReqBod.title}', '${listingReqBod.listingBody}', ${req.cookies.zipcode}, ${req.cookies.userID})`
     db.query(queryString)
     .then((data) => {
       // console.log('new listing: ', data.rows);
@@ -83,6 +83,24 @@ const userController = {};
     commentReqBod = req.body;
     console.log('posting a comment thru postman: ', commentReqBod);
     const queryString = `INSERT INTO comment (comment_body)`
+  }
+
+  userController.getComments = (req, res, next) => {
+
+    console.log("made it to getComments controller")              
+                  const queryString = `SELECT comment_body FROM comment WHERE listing_id = ${req.cookies.id}`; // testing route handler for finding listing based on zipcode
+                
+                  db.query(queryString)
+                  .then((data) => {
+                    // console.log('data from listings', data.rows)
+
+                    res.locals.comments = data.rows;
+                    return next()
+                  })
+                  .catch((err) => console.error('Error in findListings middleware: ', err))
+  
+
+
   }
 
 
