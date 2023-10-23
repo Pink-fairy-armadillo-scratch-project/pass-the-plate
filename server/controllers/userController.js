@@ -13,7 +13,7 @@ const userController = {};
   userController.verifyUser = (req, res, next) => {
     // console.log("we shouldnt be hitting this")
     // console.log("request body in Originalcontroller: ", req.body)
-    console.log(req.body)
+    console.log(req.body);
     userReqBod = req.body;
     // res.redirect('/redirect')
     // find user in database
