@@ -14,7 +14,7 @@ userController.verifyUser = (req, res, next) => {
   // res.redirect('/redirect')
   // find user in database
   // console.log('testing userReqBod: ', userReqBod)
-  const queryString = `SELECT username, password, zipcode, id FROM "user" WHERE username = '${userReqBod.username}' AND password = '${userReqBod.password}' AND zipcode = ${userReqBod.zipcode}`;
+  const queryString = `SELECT username, password, zipcode, id FROM users WHERE username = '${userReqBod.username}' AND password = '${userReqBod.password}' AND zipcode = ${userReqBod.zipcode}`;
   db.query(queryString)
     .then((data) => {
       // console.log('request body in verifyUser controller: ', userReqBod)
@@ -41,7 +41,7 @@ let recentData;
 
 userController.findListings = (req, res, next) => {
   console.log('made it to findListings controller');
-  const queryString = `SELECT l.*, u.username FROM listing l inner join "user" u on u.id = l.user_id WHERE l.zipcode = ${req.cookies.zipcode}`;
+  const queryString = `SELECT l.*, u.username FROM listing l inner join users u on u.id = l.user_id WHERE l.zipcode = ${req.cookies.zipcode}`;
   // testing route handler for finding listing based on zipcode
 
   db.query(queryString)
