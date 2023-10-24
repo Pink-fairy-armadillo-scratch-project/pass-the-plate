@@ -5,7 +5,7 @@ function ListingPreview({ elem, displayFullListing }) {
     <div className="listing-preview">
       <h3>{elem.title}</h3>
       <br />
-      <p>{elem.body}</p>
+      <p>{elem.listing_body}</p>
       <br />
       <button type="button" onClick={() => displayFullListing(elem)}>View full listing</button>
     </div>

@@ -25,22 +25,6 @@ function App() {
   // this piece of state is used to tell the fullListing component what data it
   // should (1) display and (2) ask for from the server
 
-  // get the listings for your zip code (if necessary)
-  useEffect(() => {
-    fetch('/listings')
-      .then((data) => data.json())
-      .then((data) => {
-        setListings(data);
-        const newMyListings = [];
-        data.forEach((el) => {
-          if (el.user === 'Jordan') newMyListings.push(el);
-        });
-        setMyListings(newMyListings);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-
   const [display, setDisplay] = useState('allListings');
   // display states: allListings, fullListing, postListing, ownListings
   // this piece of state and the associated display functions control
@@ -62,6 +46,68 @@ function App() {
   function displayOwnListings() {
     setDisplay('ownListings');
   }
+
+  // get the listings for your zip code (if necessary)
+  useEffect(() => {
+    fetch('/listings')
+      .then((data) => data.json())
+      .then((data) => {
+        // console.log('data coming back to front end', data);
+        console.log('cookies: ', document.cookie); // can use to access user_id cookie when it is set correctly
+        console.log('what is doc.cookie', typeof document.cookie);
+
+        // turning document.cookie string into array manually because string methods cannot
+        // be invoked
+        const cookies = [];
+        let result = '';
+        for (let i = 0; i < document.cookie.length; i += 1) {
+          if (document.cookie[i] !== ' ') {
+            result += document.cookie[i];
+          } else {
+            cookies.push(result);
+            result = '';
+          }
+        }
+
+        // making last result value consistent for below cache method
+        result += ';';
+        cookies.push(result);
+
+        // creating cookie cache
+        const cache = {};
+        for (let i = 0; i < cookies.length; i += 1) {
+          const index = cookies[i].indexOf('=');
+          // if (i === cookies.length - 1) {
+          //   cache[cookies[i].slice(0, index)] = cookies[i].slice(index + 1);
+          //   break;
+          // }
+          cache[cookies[i].slice(0, index)] = cookies[i].slice(index + 1, -1);
+        }
+
+        console.log('cache: ', cache);
+
+        const { username } = cache;
+        console.log('username pulled from cache:', username);
+
+        console.log('cookies: ', cookies);
+
+        // console.log('result: ', result);
+        // const cookies = result.split(' ').split(';');
+        // console.log('split: ', cookies);
+
+        setListings(data);
+        const newMyListings = [];
+        data.forEach((el) => {
+          // console.log('el.username: ', el.username);
+          // console.log('cookie: ', document.cookie.username);
+          if (el.username === username) {
+            newMyListings.push(el);
+          }
+        });
+        setMyListings(newMyListings);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <>

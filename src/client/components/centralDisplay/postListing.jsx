@@ -5,11 +5,18 @@ import React from 'react';
 
 function PostListing() {
   return (
-    <div className="post-listing-div" action="/postListing" method="post">
+    <div className="post-listing-div">
       <h3 className="post-listing-header">Create a Listing</h3>
-      <form className="post-listing-form">
-        <input type="text-area" />
-        <button type="submit">Post</button>
+      <form className="post-listing-form" method="post">
+        <label>
+          Title:
+          <input type="text" name="title" />
+        </label>
+        <label>
+          Description:
+          <input type="text-area" name="listing_body" />
+        </label>
+        <button type="submit" formAction="/postlisting">Post</button>
       </form>
     </div>
   );

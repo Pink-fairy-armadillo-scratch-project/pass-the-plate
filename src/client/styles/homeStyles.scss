@@ -6,9 +6,9 @@
   padding: 0px;
 }
 
-body {
-  border: solid 1px blue;
-}
+// body {
+//   // border: solid 1px blue;
+// }
 
 h1 {
   text-align: center;
@@ -29,16 +29,13 @@ label {
   color: $text-color;
 }
 
-main {
-  height: 100%;
-  border: solid 10px rgb(17, 15, 44);
-  width: 2000px;
-  height: 900px;
-}
+// main {
+  // border: solid 1px green;
+// }
 
 .central-display {
   width: 50vw;
-  height: 80%;
+  height: fit-content;
   border: solid 1px black;
   display: grid;
   grid-template-columns: auto auto;
@@ -108,5 +105,9 @@ button {
   margin-top: 5px;
   margin-bottom: 5px;
   width: 80%;
+}
 
+.post-listing-div form {
+  display: flex;
+  flex-direction: column;
 }

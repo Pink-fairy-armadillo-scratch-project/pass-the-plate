@@ -13,7 +13,7 @@ const userController = {};
   
   userController.verifyUser = (req, res, next) => {
     // console.log("request body in Originalcontroller: ", req.body)
-    // console.log(req.body)
+    console.log(req.body);
     userReqBod = req.body;
     // res.redirect('/redirect')
     // find user in database
@@ -45,19 +45,19 @@ const userController = {};
 
  let recentData;
 
-  userController.findListings = (req, res, next) => {
-                
-                  console.log("made it to findListings controller")              
-                  const queryString = `SELECT * FROM listing WHERE zipcode = ${req.cookies.zipcode}`; // testing route handler for finding listing based on zipcode
-                
-                  db.query(queryString)
-                  .then((data) => {
-                    // console.log('data from listings', data.rows)
-                    res.locals.listingID = data.rows;
-                    return next()
-                  })
-                  .catch((err) => console.error('Error in findListings middleware: ', err))
-  
+userController.findListings = (req, res, next) => {
+  console.log("made it to findListings controller");
+  const queryString = `SELECT l.*, u.username FROM listing l inner join "user" u on u.id = l.user_id WHERE l.zipcode = ${req.cookies.zipcode}`;
+  // testing route handler for finding listing based on zipcode
+
+  db.query(queryString)
+    .then((data) => {
+      console.log('data from listings', data.rows);
+      res.locals.listings = data.rows;
+      return next();
+    })
+    .catch((err) => console.error('Error in findListings middleware: ', err));
+
   // Query SQL DB for SELECT * WHERE userReqBody === zipcode_id
   // res.locals.listings = 'database response';
   };
