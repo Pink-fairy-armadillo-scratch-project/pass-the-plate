@@ -11,6 +11,9 @@ function CentralDisplay({
   // what is displayed in this component is different depending on state
 
   if (display === 'allListings' || display === 'ownListings') {
+    // if display is either of these two values, a grid of listing
+    // previews will be rendered by this component
+
     const createDisplayArray = (data) => {
       // input: an array that is taken from state
       // output: an array of components

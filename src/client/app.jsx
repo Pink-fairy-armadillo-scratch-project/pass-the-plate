@@ -11,8 +11,6 @@ function App() {
   // most of state is stored in it
   // most of the functions that are used in the front end are in it
 
-  // const [user, setUser] = useState({});
-  // it may be necessary to have a piece of state that stores user information
 
   const [listings, setListings] = useState([]);
   // this piece of state stores all the listings for a given zip code
@@ -47,17 +45,19 @@ function App() {
     setDisplay('ownListings');
   }
 
-  // get the listings for your zip code (if necessary)
+  // populate listings and myListings pieces of state with information from database
   useEffect(() => {
     fetch('/listings')
       .then((data) => data.json())
       .then((data) => {
-        // console.log('data coming back to front end', data);
-        console.log('cookies: ', document.cookie); // can use to access user_id cookie when it is set correctly
-        console.log('what is doc.cookie', typeof document.cookie);
+        // set listings to the data that comes back
+        setListings(data);
 
-        // turning document.cookie string into array manually because string methods cannot
-        // be invoked
+        // cull the listings that come back for the user who is currently logged in
+        // do this by first getting the value on the username cookie and then filtering through
+        // the array of data
+
+        // create an array where each individual cookie is an element
         const cookies = [];
         let result = '';
         for (let i = 0; i < document.cookie.length; i += 1) {
@@ -74,35 +74,20 @@ function App() {
         cookies.push(result);
 
         // creating cookie cache
+        // each cookie is a property on the object
         const cache = {};
         for (let i = 0; i < cookies.length; i += 1) {
           const index = cookies[i].indexOf('=');
-          // if (i === cookies.length - 1) {
-          //   cache[cookies[i].slice(0, index)] = cookies[i].slice(index + 1);
-          //   break;
-          // }
           cache[cookies[i].slice(0, index)] = cookies[i].slice(index + 1, -1);
         }
 
-        console.log('cache: ', cache);
-
+        // pull out the value of the username cookie
         const { username } = cache;
-        console.log('username pulled from cache:', username);
 
-        console.log('cookies: ', cookies);
-
-        // console.log('result: ', result);
-        // const cookies = result.split(' ').split(';');
-        // console.log('split: ', cookies);
-
-        setListings(data);
+        // create myListings array by filtering through listings data and set it to state
         const newMyListings = [];
         data.forEach((el) => {
-          // console.log('el.username: ', el.username);
-          // console.log('cookie: ', document.cookie.username);
-          if (el.username === username) {
-            newMyListings.push(el);
-          }
+          if (el.username === username) newMyListings.push(el);
         });
         setMyListings(newMyListings);
       })
