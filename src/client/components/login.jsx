@@ -13,7 +13,7 @@ function Login() {
       <br />
       <label>
         Password:
-        <input type="text" name="password" />
+        <input type="password" name="password" />
       </label>
       <br />
       <label>
