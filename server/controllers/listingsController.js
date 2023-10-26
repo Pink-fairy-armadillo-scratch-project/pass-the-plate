@@ -28,7 +28,7 @@ listingsController.findListings = (req, res, next) => {
 listingsController.postListing = (req, res, next) => {
   const listingReqBod = req.body;
   console.log('posting a listing thru postman: ', listingReqBod);
-  const queryString = `INSERT INTO listing (title, listing_body, user_id) VALUES ('${listingReqBod.title}', '${listingReqBod.listingBody}', '9')`;
+  const queryString = `INSERT INTO listing (title, listing_body, user_id) VALUES ('${listingReqBod.title}', '${listingReqBod.listingBody}', '1')`;
   db.query(queryString)
     .then((data) => {
       console.log('new listing: ', data.rows);

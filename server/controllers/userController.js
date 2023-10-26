@@ -61,7 +61,7 @@ let listingReqBod;
 userController.postListing = (req, res, next) => {
   listingReqBod = req.body;
   console.log('posting a listing thru postman: ', listingReqBod);
-  const queryString = `INSERT INTO listing (title, listing_body, zipcode, user_id) VALUES ('${listingReqBod.title}', '${listingReqBod.listingBody}', ${req.cookies.zipcode}, ${req.cookies.userID})`;
+  const queryString = `INSERT INTO listing (title, listing_body) VALUES ('${listingReqBod.title}', '${listingReqBod.listing_body}')`;
   db.query(queryString)
     .then((data) => next())
     .catch((err) => console.error('Error in postListing middleware: ', err));
@@ -90,12 +90,34 @@ userController.getComments = (req, res, next) => {
 };
 
 
-userController.createUser = (req, res, next) => {
+userController.createUser = async (req, res, next) => {
   // create user in database
+  try {
+    const { username, password, zipcode } = req.body;
+    console.log('userController.createUser reached');
+    const params = [username, password, zipcode];
+    const text = `
+    INSERT INTO users(username, password, zipcode)
+    VALUES ($1, $2, $3);
+    `;
+    const result = await db.query(text, params);
+    // res.locals.createUser = result;
+    // res.redirect('/signup');
+    return next();
+  } catch (error) {
+    return next({
+      log: `userController.createUser ERORR: ${error}`,
+      message: {
+        err: 'Error occurred in userController.createUser. Check server logs for more detail',
+      },
+      status: 500,
+    });
+  }
   // if username already exists, redirect to default path '/'
   // if user is successfully created, redirect to home page
-  res.redirect('/redirect');
-  return next();
+  // res.redirect('/redirect');
+  // console.log('create user is running');
+  // return next();
 };
 
 

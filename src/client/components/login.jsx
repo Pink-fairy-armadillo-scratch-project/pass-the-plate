@@ -23,7 +23,7 @@ function Login() {
       <br />
       <div className="button-div">
         <button type="submit" formAction="/login">Login</button>
-        <button type="submit" formAction="/login">Sign Up</button>
+        <button type="submit" formAction="/signup">Sign Up</button>
       </div>
     </form>
   );

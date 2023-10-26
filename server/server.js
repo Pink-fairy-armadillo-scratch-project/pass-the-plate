@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.post('/signup', userController.createUser, (req, res) => {
+  res.status(200).end();
   console.log('new user request body in server: ', req.body);
 });
 
